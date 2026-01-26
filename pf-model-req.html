@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PF Model Requirements | Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+   .note2{
+     border: 1px solid rgba(11,107,79,.18);
+     background: rgba(230,244,239,.55);
+     border-radius: 16px;
+     padding: 14px;
+     margin-top: 12px;
+     line-height: 1.55;
+     color: #0b3e30;
+     font-weight: 700;
+   }
+   .circles{
+     display:grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     gap: 12px;
+     margin-top: 14px;
+   }
+   @media (max-width: 900px){ .circles{ grid-template-columns: 1fr; } }
+   .circle-card{
+     border: 1px solid var(--border);
+     border-radius: 16px;
+     background:#fff;
+     padding: 14px;
+   }
+   .circle{
+     width: 92px;
+     height: 92px;
+     border-radius: 999px;
+     display:flex;
+     align-items:center;
+     justify-content:center;
+     margin: 0 auto 10px;
+     background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+     color:#fff;
+     font-weight: 950;
+     font-size: 16px;
+     text-align:center;
+     padding: 10px;
+   }
+   .subhead{
+     margin: 0 0 8px;
+     font-weight: 950;
+     color:#0b3e30;
+     text-align:center;
+   }
+   .k{
+     font-size: 12px;
+     color: var(--muted);
+     text-align:center;
+     margin: 0 0 10px;
+   }
+   .items{
+     margin: 0;
+     padding-left: 18px;
+   }
+   .items li{ margin: 8px 0; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">PF Model · Requirements</div>
+</header>
+<section class="card">
+<h1>Project Finance Model — Requirements</h1>
+<div class="note2">
+<b>Note:</b> There are two types: <b>Consolidated</b> and <b>Standalone</b>.
+       Unlike the consolidated model, a standalone model does not require historical financials.
+</div>
+<div class="circles">
+<!-- CREDIT -->
+<div class="circle-card">
+<div class="circle">Credit</div>
+<h3 class="subhead">Credit Requirements</h3>
+<p class="k">Inputs mainly from financial statements and credit analysis.</p>
+<ul class="items">
+<li>Income Statement and Balance Sheet</li>
+<li>Cash conversion cycle</li>
+<li>SG&amp;A percentage (note: subtract Depreciation &amp; Amortization)</li>
+<li>PP&amp;E (for the most recent year)</li>
+<li>Historical financials (only for consolidated)</li>
+</ul>
+</div>
+<!-- MARKET -->
+<div class="circle-card">
+<div class="circle">Market</div>
+<h3 class="subhead">Market Requirements</h3>
+<p class="k">From (FMR) Full Market Report.</p>
+<ul class="items">
+<li>Product line</li>
+<li>Selling price</li>
+<li>Raw material cost</li>
+<li>Volume</li>
+</ul>
+</div>
+<!-- TECHNICAL -->
+<div class="circle-card">
+<div class="circle">Technical</div>
+<h3 class="subhead">Technical Requirements</h3>
+<p class="k">From (FTR) Full Technical Report.</p>
+<ul class="items">
+<li>Indirect &amp; direct salary</li>
+<li>Utilities</li>
+<li>Capital expenditure, depreciation, amortization, and maintenance rate</li>
+</ul>
+</div>
+</div>
+<div class="divider"></div>
+<div class="actions spread">
+<a class="btn ghost" href="modeling.html">Back</a>
+<a class="btn primary" href="modeling.html">Done</a>
+</div>
+</section>
+<footer class="footer">
+<span>Internal use only</span>
+<span>PF Model</span>
+</footer>
+</main>
+</body>
+</html>

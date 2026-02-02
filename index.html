@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SIDF RM Credit | Welcome</title>
+<style>
+   :root{
+     --sidf-green:#0b6a58;
+     --sidf-green-dark:#064a3e;
+     --ink:#0f1a1a;
+     --muted:#6b7a7a;
+     --bg:#eef2f1;
+     --card:#ffffff;
+     --border:#d7dfdd;
+     --shadow: 0 10px 25px rgba(0,0,0,.08);
+     --radius:16px;
+   }
+   *{box-sizing:border-box}
+   body{
+     margin:0;
+     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+     color:var(--ink);
+     background:var(--bg);
+   }
+   /* Top bar */
+   .topbar{
+     background:#1f2628;
+     color:#fff;
+     padding:18px 22px;
+     display:flex;
+     align-items:center;
+     justify-content:space-between;
+   }
+   .brand{
+     display:flex;
+     align-items:center;
+     gap:14px;
+   }
+   .logo{
+     width:92px;
+     height:36px;
+     border-radius:10px;
+     background:#fff;
+     display:flex;
+     align-items:center;
+     justify-content:center;
+     color:#0b6a58;
+     font-weight:800;
+     font-size:12px;
+   }
+   .pill{
+     background:rgba(255,255,255,.15);
+     padding:8px 12px;
+     border-radius:999px;
+     font-size:12px;
+   }
+   /* Layout */
+   .wrap{
+     max-width:1180px;
+     margin:20px auto;
+     padding:0 18px;
+   }
+   .panel{
+     background:rgba(255,255,255,.6);
+     border-radius:22px;
+     padding:18px;
+     box-shadow:0 16px 40px rgba(0,0,0,.08);
+   }
+   .grid{
+     display:grid;
+     grid-template-columns:1fr 1fr;
+     gap:18px;
+   }
+   @media (max-width:900px){
+     .grid{grid-template-columns:1fr}
+   }
+   /* Left */
+   .welcomeTitle{font-size:36px;margin:0}
+   .sub{color:var(--muted);margin:6px 0 14px}
+   .loginRow{
+     display:flex;
+     justify-content:space-between;
+     align-items:center;
+     background:#f6f8f8;
+     border-radius:14px;
+     padding:12px;
+     margin-bottom:14px;
+   }
+   .btn{
+     border:none;
+     padding:10px 16px;
+     border-radius:12px;
+     font-weight:700;
+     cursor:pointer;
+   }
+   .btn-primary{
+     background:var(--sidf-green);
+     color:#fff;
+   }
+   .videoCard{
+     background:#fff;
+     border-radius:16px;
+     box-shadow:var(--shadow);
+     overflow:hidden;
+     margin-bottom:14px;
+   }
+   .videoHeader{
+     background:var(--sidf-green);
+     color:#fff;
+     padding:10px 14px;
+     font-size:13px;
+     font-weight:800;
+   }
+   .videoBody{padding:14px}
+   video{
+     width:100%;
+     border-radius:12px;
+     background:#000;
+   }
+   .listCard{
+     background:#e6f0ee;
+     border-radius:14px;
+     padding:14px;
+     margin-bottom:14px;
+   }
+   ul{margin:0;padding-left:18px;font-size:13px}
+   /* Right */
+   .cards{
+     display:grid;
+     grid-template-columns:1fr 1fr;
+     gap:12px;
+     margin-bottom:14px;
+   }
+   .infoCard{
+     background:#f6f8f8;
+     border-radius:14px;
+     padding:12px;
+   }
+   .k{font-size:11px;color:#6b7a7a;font-weight:800}
+   .v{font-size:13px;font-weight:800}
+   .hero{
+     background:#fff;
+     border-radius:18px;
+     box-shadow:var(--shadow);
+     overflow:hidden;
+     min-height:260px;
+   }
+   .hero img{
+     width:100%;
+     height:100%;
+     object-fit:cover;
+   }
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="brand">
+<div class="logo">SIDF Logo</div>
+<div>
+<strong>SIDF</strong><br/>
+<small>Relationship Management · Credit</small>
+</div>
+</div>
+<div class="pill">Onboarding Portal</div>
+</header>
+<main class="wrap">
+<section class="panel">
+<div class="grid">
+<!-- LEFT -->
+<div>
+<h1 class="welcomeTitle">Welcome 👋</h1>
+<p class="sub">
+         Welcome to the Saudi Industrial Development Fund. This portal helps Co-op students
+         and new RM (Credit) team members get started.
+</p>
+<div class="loginRow">
+<span>Please log in to save your progress.</span>
+<a href="login.html">
+<button class="btn btn-primary">Log in / Create account</button>
+</a>
+</div>
+<div class="videoCard">
+<div class="videoHeader">SIDF | Saudi Industrial Development Fund</div>
+<div class="videoBody">
+<video controls preload="metadata">
+<source src="welcome-video.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+<div class="listCard">
+<strong>What you’ll find here</strong>
+<ul>
+<li>Overview of SIDF</li>
+<li>SIDF structure</li>
+<li>Role of Credit Relationship Management</li>
+<li>SIDF project lifecycle</li>
+<li>Types of SIDF financing</li>
+<li>Financial Modeling</li>
+<li>Final Tips</li>
+</ul>
+</div>
+<a href="overview.html">
+<button class="btn btn-primary">Enter Portal</button>
+</a>
+</div>
+<!-- RIGHT -->
+<div>
+<div class="cards">
+<div class="infoCard"><div class="k">Audience</div><div class="v">Co-op / New Joiners</div></div>
+<div class="infoCard"><div class="k">Goal</div><div class="v">Fast onboarding</div></div>
+<div class="infoCard"><div class="k">Track</div><div class="v">Credit</div></div>
+<div class="infoCard"><div class="k">Format</div><div class="v">Step-by-step</div></div>
+</div>
+<div class="hero">
+<img src="welcome-photo.png" alt="SIDF visual">
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>

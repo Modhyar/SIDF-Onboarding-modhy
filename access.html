@@ -427,18 +427,16 @@
 
   gateVideo(vid1, ()=>{
 
-    v1Done = true;
-
-    localStorage.setItem(KEY_V1(u), "true");
-
-  });
-
-  gateVideo(vid2, ()=>{
-
-    v2Done = true;
-
-    localStorage.setItem(KEY_V2(u), "true");
-
+   gateVideo(vid1, ()=>{
+ v1Done = true;
+ localStorage.setItem(KEY_V1(u), "true");
+ refreshUnlock();   // i changed this
+});
+gateVideo(vid2, ()=>{
+ v2Done = true;
+ localStorage.setItem(KEY_V2(u), "true");
+ refreshUnlock();   // i changed this
+});
   });
 
   refreshUnlock();
@@ -447,6 +445,7 @@
 </html>
 
  
+
 
 
 

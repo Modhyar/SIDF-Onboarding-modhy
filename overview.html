@@ -15,19 +15,28 @@
      background: #fff;
    }
    .imgCard img{
-     width: 75%;
      display: block;
      height: auto;
+   }
+   /* FIRST image only – smaller & centered */
+   .imgCard.first img{
+     width: 75%;
+     margin: 0 auto;
+   }
+   /* SECOND image stays full width */
+   .imgCard.second img{
+     width: 100%;
    }
    .valuesTitle{
      margin-top: 18px;
      font-size: 22px;
      font-weight: 950;
    }
+   /* Smaller carousel */
    .carouselWrap{
-     margin-top: 12px; auto 0;
+     margin: 12px auto 0;
      width: 55%;
-     max-width: 420px; 
+     max-width: 420px;
      border: 1px solid var(--border);
      border-radius: 16px;
      overflow: hidden;
@@ -43,16 +52,16 @@
    }
    .carouselBadge{
      position:absolute;
-     top: 10px;
-     right: 10px;
-     padding: 6px 10px;
+     top: 8px;
+     right: 8px;
+     padding: 5px 9px;
      border-radius: 999px;
      background: rgba(0,0,0,.45);
      color: #fff;
      font-weight: 900;
      border: 1px solid rgba(255,255,255,.20);
      backdrop-filter: blur(6px);
-     font-size: 12px;
+     font-size: 11px;
    }
    .actions{
      margin-top: 18px;
@@ -78,19 +87,19 @@
 </header>
 <section class="card">
 <h1 style="margin-bottom:6px;">SIDF Overview</h1>
-<!-- IMAGE 1 -->
-<div class="imgCard">
-<img src="overview-1.png" alt="SIDF Overview image 1">
+<!-- IMAGE 1 (smaller) -->
+<div class="imgCard first">
+<img src="overview-1.jpg" alt="SIDF Overview image 1">
 </div>
-<!-- IMAGE 2 -->
-<div class="imgCard">
-<img src="overview-2.png" alt="SIDF Overview image 2">
+<!-- IMAGE 2 (normal) -->
+<div class="imgCard second">
+<img src="overview-2.jpg" alt="SIDF Overview image 2">
 </div>
 <!-- VALUES -->
 <div class="valuesTitle">Our Values:</div>
 <div class="carouselWrap">
 <div class="carouselBadge" id="valCounter">1 / 5</div>
-<img id="valuesImg" src="value-1.png" alt="SIDF Values slide">
+<img id="valuesImg" src="value-1.jpg" alt="SIDF Values slide">
 </div>
 <div class="actions">
 <a class="btn ghost" href="index.html">Back</a>
@@ -104,16 +113,16 @@
 </main>
 <script>
  document.getElementById("y").textContent = new Date().getFullYear();
- // Mark overview as done immediately (since no mandatory video now)
+ // Mark overview as completed (no mandatory video here)
  const user = localStorage.getItem("sidf_user_current") || "guest";
  localStorage.setItem(`sidf_done_overview:${user}`, "true");
- // Values carousel (5 images, auto switch every 0.25s)
+ // Auto values carousel (every 0.25s)
  const values = [
-   "value-1.png",
-   "value-2.png",
-   "value-3.png",
-   "value-4.png",
-   "value-5.png"
+   "value-1.jpg",
+   "value-2.jpg",
+   "value-3.jpg",
+   "value-4.jpg",
+   "value-5.jpg"
  ];
  const img = document.getElementById("valuesImg");
  const counter = document.getElementById("valCounter");
@@ -126,4 +135,3 @@
 </script>
 </body>
 </html>
-

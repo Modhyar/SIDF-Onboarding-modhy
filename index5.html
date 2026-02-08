@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SIDF RM Credit | Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<script>window.CURRENT_PAGE_ID = "Welcome";</script>
+<script>
+// 1) Update these filenames to match your project
+const STEPS = [
+ { id:"welcome",   title:"Welcome",            sub:"Mandatory video",   href:"index.html",     key:"sidf_done_welcome" },
+ { id:"overview",  title:"SIDF Overview",      sub:"Intro + video",     href:"overview.html",  key:"sidf_done_overview" },
+ { id:"structure", title:"SIDF Structure",     sub:"Org charts",        href:"structure.html", key:"sidf_done_structure" },
+ { id:"role",      title:"RM Role",            sub:"Timeline",          href:"role.html",      key:"sidf_done_role" },
+ { id:"lifecycle", title:"Project Lifecycle",  sub:"Process",           href:"lifecycle.html", key:"sidf_done_lifecycle" },
+ { id:"financing", title:"Types of Financing", sub:"WC / PF",           href:"financing.html", key:"sidf_done_financing" },
+ { id:"modeling",  title:"Financial Modeling", sub:"Requirements",      href:"modeling.html",  key:"sidf_done_modeling" },
+ { id:"final",     title:"Final Tips",         sub:"Wrap up",           href:"final.html",     key:"sidf_done_final" }
+];
+const CURRENT_PAGE_ID = window.CURRENT_PAGE_ID || "";
+function isDone(key){
+ return localStorage.getItem(key) === "true";
+}
+function setDone(key){
+ localStorage.setItem(key, "true");
+}
+function renderStepper(){
+ const el = document.getElementById("stepper");
+ if(!el) return;
+ el.innerHTML = "";
+ STEPS.forEach((s, idx) => {
+   const a = document.createElement("a");
+   a.className = "step";
+   a.href = s.href;
+   const done = isDone(s.key);
+   if(done) a.classList.add("completed");
+   if(s.id === CURRENT_PAGE_ID) a.classList.add("current");
+   a.innerHTML = `
+<div class="step-dot">${done ? "✓" : (idx+1)}</div>
+<div>
+<div class="step-title">${s.title}</div>
+<div class="step-sub">${s.sub}</div>
+</div>
+   `;
+   el.appendChild(a);
+ });
+}
+// Helper for pages with mandatory video:
+// Call markStepComplete("sidf_done_overview") when video ends.
+window.markStepComplete = function(key){
+ setDone(key);
+ renderStepper();
+};
+renderStepper();
+</script>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Onboarding Portal</div>
+</header>
+<section class="card hero">
+<div class="hero-left">
+<!-- ✅ UPDATED TITLE: Welcome + SIDF wave animation -->
+<h1 class="welcomeTitle">
+ Welcome
+<span class="sidfHand" aria-hidden="true" title="Welcome">
+<!-- simple hand outline (SIDF green) -->
+<svg viewBox="0 0 64 64">
+<path d="M24 30V16c0-3 2-5 5-5s5 2 5 5v12" />
+<path d="M34 28V14c0-3 2-5 5-5s5 2 5 5v16" />
+<path d="M44 30V18c0-3 2-5 5-5s5 2 5 5v22c0 10-8 18-18 18H28c-10 0-18-8-18-18V30c0-3 2-5 5-5s5 2 5 5v6" />
+<path d="M20 36l0 4" />
+</svg>
+</span>
+</h1>
+<p class="muted">
+         Welcome to the Saudi Industrial Development Fund. This portal helps Co-op students and new RM (Credit) team members to get started.
+</p>
+<!-- LOGIN BAR -->
+<div class="login-box">
+<span id="loginStatus" class="muted">Please log in to save your progress.</span>
+<button id="openLogin" class="btn primary">Log in / Create account</button>
+<button id="logoutBtn" class="btn ghost" style="display:none;">Log out</button>
+</div>
+<!-- ✅ REMOVED: video + completion UI -->
+<div class="callout">
+<div class="callout-title">What you’ll find here</div>
+<ul>
+<li>Overview of SIDF</li>
+<li>SIDF structure</li>
+<li>Role of Credit Relationship Management</li>
+<li>SIDF project lifecycle</li>
+<li>Types of SIDF financing</li>
+<li>Financial Modeling</li>
+<li>Final Tips</li>
+</ul>
+</div>
+<div class="actions">
+<a class="btn primary" href="overview.html">Enter Portal</a>
+</div>
+<p class="tiny muted">
+         Tip: You can revisit this portal anytime during your training.
+</p>
+</div>
+<div class="hero-right">
+<div class="panel">
+<div class="panel-title">Starter View</div>
+<div class="statgrid">
+<div class="stat">
+<div class="stat-label">Audience</div>
+<div class="stat-value">New Joiners / Co-op</div>
+</div>
+<div class="stat">
+<div class="stat-label">Goal</div>
+<div class="stat-value">Fast onboarding</div>
+</div>
+<div class="stat">
+<div class="stat-label">Track</div>
+<div class="stat-value">Credit</div>
+</div>
+<div class="stat">
+<div class="stat-label">Format</div>
+<div class="stat-value">Step-by-step</div>
+</div>
+</div>
+<div class="divider"></div>
+<div class="kv">
+<div style="margin-top:12px; border-radius:16px; overflow:hidden; border:1px solid var(--border); background:#fff;">
+<img src="welcome-photo.png" alt="SIDF onboarding" style="width:100%; display:block;">
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="footer">
+<span>© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
+<span>Built for RM Department · Credit</span>
+</footer>
+</main>
+<script>
+   document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+<!-- ✅ WAVE CSS: keep here or move to styles.css -->
+<style>
+ .welcomeTitle{
+   display:flex;
+   align-items:center;
+   gap:10px;
+   margin-bottom: 8px;
+ }
+ .sidfHand{
+   width:34px;
+   height:34px;
+   display:inline-flex;
+   align-items:center;
+   justify-content:center;
+   transform-origin: 70% 80%;
+   animation: handWave 1.6s ease-in-out infinite;
+ }
+ .sidfHand svg{
+   width:34px;
+   height:34px;
+ }
+ .sidfHand path{
+   fill:none;
+   stroke: var(--sidf-green);
+   stroke-width: 3.2;
+   stroke-linecap: round;
+   stroke-linejoin: round;
+ }
+ @keyframes handWave{
+   0%   { transform: rotate(0deg); }
+   12%  { transform: rotate(18deg); }
+   24%  { transform: rotate(-10deg); }
+   36%  { transform: rotate(16deg); }
+   48%  { transform: rotate(-6deg); }
+   60%  { transform: rotate(10deg); }
+   72%  { transform: rotate(0deg); }
+   100% { transform: rotate(0deg); }
+ }
+</style>
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="login-modal">
+<div class="login-card">
+<h3>Portal Access</h3>
+<input id="loginUser" placeholder="Email or ID" />
+<input id="loginPin" type="password" placeholder="PIN (4–8 digits)" />
+<p id="loginError" class="error"></p>
+<div class="login-actions">
+<button id="loginSubmit" class="btn primary">Log in</button>
+<button id="createSubmit" class="btn ghost">Create account</button>
+</div>
+<p class="tiny muted" style="margin-top:10px;">
+       Note: This demo stores your login locally in your browser (GitHub Pages has no backend).
+</p>
+</div>
+</div>
+<script>
+   const USERS_KEY = "sidf_users";
+   const CURRENT_KEY = "sidf_current_user";
+   const modal = document.getElementById("loginModal");
+   const openBtn = document.getElementById("openLogin");
+   const logoutBtn = document.getElementById("logoutBtn");
+   const statusText = document.getElementById("loginStatus");
+   const userInput = document.getElementById("loginUser");
+   const pinInput  = document.getElementById("loginPin");
+   const errorText = document.getElementById("loginError");
+   function loadUsers(){
+     try { return JSON.parse(localStorage.getItem(USERS_KEY) || "{}"); }
+     catch { return {}; }
+   }
+   function saveUsers(u){
+     localStorage.setItem(USERS_KEY, JSON.stringify(u));
+   }
+   function setCurrent(user){
+     localStorage.setItem(CURRENT_KEY, user);
+   }
+   function getCurrent(){
+     return localStorage.getItem(CURRENT_KEY);
+   }
+   function clearCurrent(){
+     localStorage.removeItem(CURRENT_KEY);
+   }
+   function refreshLoginUI(){
+     const u = getCurrent();
+     if(u){
+       statusText.textContent = "Logged in as: " + u;
+       openBtn.style.display = "none";
+       logoutBtn.style.display = "inline-block";
+     }else{
+       statusText.textContent = "Please log in to save your progress.";
+       openBtn.style.display = "inline-block";
+       logoutBtn.style.display = "none";
+     }
+     errorText.textContent = "";
+     userInput.value = "";
+     pinInput.value = "";
+   }
+   openBtn.onclick = () => { modal.style.display = "flex"; };
+   logoutBtn.onclick = () => { clearCurrent(); refreshLoginUI(); };
+   document.getElementById("loginSubmit").onclick = () => {
+     const users = loadUsers();
+     const u = userInput.value.trim();
+     const p = pinInput.value.trim();
+     if(!u || !p){
+       errorText.textContent = "Please enter User ID and PIN.";
+       return;
+     }
+     if(!users[u] || users[u] !== p){
+       errorText.textContent = "Invalid login.";
+       return;
+     }
+     setCurrent(u);
+     modal.style.display = "none";
+     refreshLoginUI();
+   };
+   document.getElementById("createSubmit").onclick = () => {
+     const users = loadUsers();
+     const u = userInput.value.trim();
+     const p = pinInput.value.trim();
+     if(!u || !p){
+       errorText.textContent = "Please enter User ID and PIN.";
+       return;
+     }
+     if(!/^\d{4,8}$/.test(p)){
+       errorText.textContent = "PIN must be 4–8 digits.";
+       return;
+     }
+     if(users[u]){
+       errorText.textContent = "Account already exists.";
+       return;
+     }
+     users[u] = p;
+     saveUsers(users);
+     setCurrent(u);
+     modal.style.display = "none";
+     refreshLoginUI();
+   };
+   window.addEventListener("click", (e) => {
+     if(e.target === modal) modal.style.display = "none";
+   });
+   refreshLoginUI();
+</script>
+</body>
+</html>

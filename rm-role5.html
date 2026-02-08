@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>RM Role | SIDF RM Credit Onboarding</title>
+<link rel="stylesheet" href="styles.css" />
+<script>window.CURRENT_PAGE_ID = "role";</script>
+<style>
+   /* page layout helpers (won't break your global theme) */
+   .roleWrap{ max-width: 980px; margin: 0 auto; }
+   .roleHeader{
+     display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+     margin-bottom: 12px;
+   }
+   .roleHeader h1{ margin:0; }
+   .roleHeader p{ margin:6px 0 0; }
+   /* bordered carousel */
+   .carousel{
+     margin-top: 14px;
+     border: 1px solid var(--border);
+     border-radius: 18px;
+     background: rgba(255,255,255,.95);
+     overflow: hidden;
+     box-shadow: 0 12px 34px rgba(0,0,0,.08);
+   }
+   .carouselTop{
+     padding: 14px 16px;
+     border-bottom: 1px solid var(--border);
+     background: rgba(0,0,0,.02);
+     display:flex; align-items:center; justify-content:space-between; gap:12px;
+     flex-wrap: wrap;
+   }
+   .pill{
+     font-size: 12px;
+     font-weight: 900;
+     padding: 6px 10px;
+     border-radius: 999px;
+     border: 1px solid var(--border);
+     background: rgba(0,0,0,.03);
+     white-space: nowrap;
+   }
+   .doneCheck{
+     display:none;
+     align-items:center;
+     gap:8px;
+     font-weight: 950;
+     color: var(--sidf-green);
+   }
+   .doneCheck .checkDot{
+     width:26px; height:26px; border-radius:999px;
+     display:flex; align-items:center; justify-content:center;
+     background: rgba(30,152,86,.12);
+     border: 1px solid rgba(30,152,86,.25);
+     font-size: 16px;
+   }
+   .track{
+     position: relative;
+     width: 100%;
+     overflow: hidden;
+   }
+   .slides{
+     display:flex;
+     transition: transform .25s ease;
+     will-change: transform;
+   }
+   .slide{
+     flex: 0 0 100%;
+     padding: 18px 18px 16px;
+   }
+   .slideCard{
+     border: 1px solid var(--border);
+     border-radius: 16px;
+     background: rgba(30,152,86,.05);
+     padding: 16px;
+   }
+   .slideHead{
+     display:flex; align-items:flex-start; gap:12px;
+     margin-bottom: 10px;
+   }
+   .iconBox{
+     width:46px; height:46px; border-radius:14px;
+     background: rgba(30,152,86,.10);
+     border: 1px solid rgba(30,152,86,.22);
+     display:flex; align-items:center; justify-content:center;
+     color: var(--sidf-green);
+     flex: 0 0 auto;
+   }
+   .iconBox svg{
+     width:24px; height:24px;
+     stroke: currentColor;
+     fill: none;
+     stroke-width: 2.3;
+     stroke-linecap: round;
+     stroke-linejoin: round;
+   }
+   .slideTitle{
+     margin: 0;
+     font-weight: 950;
+     font-size: 18px;
+     line-height: 1.2;
+   }
+   .slideBody{
+     margin: 6px 0 0;
+     line-height: 1.65;
+   }
+   .miniList{
+     margin: 10px 0 0;
+     padding: 0;
+     list-style: none;
+     display:grid;
+     gap: 8px;
+   }
+   .miniItem{
+     display:flex; gap:10px; align-items:flex-start;
+     padding: 10px 12px;
+     border-radius: 14px;
+     border: 1px solid var(--border);
+     background: rgba(0,0,0,.02);
+   }
+   .miniIcon{
+     width:26px; height:26px; border-radius:10px;
+     display:flex; align-items:center; justify-content:center;
+     background: rgba(30,152,86,.10);
+     border: 1px solid rgba(30,152,86,.18);
+     color: var(--sidf-green);
+     flex: 0 0 auto;
+   }
+   .miniIcon svg{
+     width:16px; height:16px;
+     stroke: currentColor; fill: none;
+     stroke-width: 2.2;
+     stroke-linecap: round; stroke-linejoin: round;
+   }
+   .controls{
+     display:flex; align-items:center; justify-content:space-between;
+     gap: 12px;
+     padding: 12px 16px;
+     border-top: 1px solid var(--border);
+     background: rgba(0,0,0,.02);
+     flex-wrap: wrap;
+   }
+   .dots{
+     display:flex; gap:8px; align-items:center; justify-content:center;
+     flex-wrap: wrap;
+   }
+   .dot{
+     width:10px; height:10px; border-radius:999px;
+     border: 1px solid rgba(0,0,0,.18);
+     background: rgba(0,0,0,.08);
+     cursor:pointer;
+   }
+   .dot.active{
+     background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+     border-color: rgba(0,0,0,.14);
+   }
+   .dot.seen{
+     background: rgba(30,152,86,.18);
+     border-color: rgba(30,152,86,.25);
+   }
+   .lockNote{
+     margin-top: 12px;
+     font-weight: 400;
+   }
+   /* bottom nav same feel as your site */
+   .bottomNav{
+     margin-top: 16px;
+     display:flex; align-items:center; justify-content:space-between; gap:12px;
+   }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">RM Role</div>
+</header>
+<section class="card roleWrap">
+<div class="roleHeader">
+<div>
+<h1>Role of Credit Relationship Management</h1>
+<p class="muted">
+         Go through all slides to unlock Continue.
+</p>
+</div>
+<div class="pill" id="slideCounter">Slide 1 / 7</div>
+</div>
+<div class="carousel">
+<div class="carouselTop">
+<div class="pill" id="seenText">0 / 7 completed</div>
+<div class="doneCheck" id="doneCheck">
+<span class="checkDot">✓</span>
+<span>Completed — you can continue</span>
+</div>
+</div>
+<div class="track">
+<div class="slides" id="slides"></div>
+</div>
+<div class="controls">
+<div style="display:flex; gap:10px; align-items:center;">
+<button class="btn ghost" id="prevBtn">← Previous</button>
+<button class="btn ghost" id="nextBtn">Next →</button>
+</div>
+<div class="dots" id="dots"></div>
+</div>
+</div>
+<p id="lockNote" class="muted lockNote">🔒 Please view all slides to unlock Continue.</p>
+<div class="bottomNav">
+<a class="btn ghost" href="structure.html">Back</a>
+<a id="continueBtn" class="btn primary" href="#"
+        style="pointer-events:none; opacity:.55;">
+       Continue →
+</a>
+</div>
+</section>
+<footer class="footer">
+<span>© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
+<span>Step 4/8</span>
+</footer>
+</main>
+<script>
+ document.getElementById("y").textContent = new Date().getFullYear();
+ /* CHANGE THESE IF NEEDED */
+ const BACK_PAGE = "structure.html";
+ const NEXT_PAGE = "lifecycle.html";
+ /* per-user keys */
+ const user = localStorage.getItem("sidf_user_current") || "guest";
+ const DONE_KEY = `sidf_done_role:${user}`;
+ const SEEN_KEY = (i) => `sidf_role_seen_${i}:${user}`;
+ /* Outline SVG icons (SIDF-green via currentColor) */
+ const ICONS = {
+   link: `
+<svg viewBox="0 0 24 24">
+<path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1"/>
+<path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1"/>
+</svg>`,
+   folder: `
+<svg viewBox="0 0 24 24">
+<path d="M3 7h6l2 2h10v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/>
+<path d="M3 9h18"/>
+</svg>`,
+   network: `
+<svg viewBox="0 0 24 24">
+<circle cx="6" cy="12" r="2"/>
+<circle cx="18" cy="6" r="2"/>
+<circle cx="18" cy="18" r="2"/>
+<path d="M8 11l8-4"/>
+<path d="M8 13l8 4"/>
+</svg>`,
+   calc: `
+<svg viewBox="0 0 24 24">
+<rect x="6" y="3" width="12" height="18" rx="2"/>
+<path d="M8.5 7h7"/>
+<path d="M9 11h1"/>
+<path d="M13 11h1"/>
+<path d="M9 15h1"/>
+<path d="M13 15h1"/>
+</svg>`,
+   chart: `
+<svg viewBox="0 0 24 24">
+<path d="M4 19V5"/>
+<path d="M4 19h16"/>
+<path d="M7 15l3-4 3 2 4-6"/>
+</svg>`,
+   docs: `
+<svg viewBox="0 0 24 24">
+<path d="M7 3h8l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/>
+<path d="M15 3v3h3"/>
+<path d="M9 11h6"/>
+<path d="M9 15h6"/>
+</svg>`,
+   check: `
+<svg viewBox="0 0 24 24">
+<path d="M20 6L9 17l-5-5"/>
+</svg>`,
+   building: `
+<svg viewBox="0 0 24 24">
+<path d="M4 20V8l8-5 8 5v12"/>
+<path d="M4 20h16"/>
+</svg>`,
+   people: `
+<svg viewBox="0 0 24 24">
+<path d="M16 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3Z"/>
+<path d="M8 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3Z"/>
+<path d="M2 20a6 6 0 0 1 12 0"/>
+<path d="M10 20a6 6 0 0 1 12 0"/>
+</svg>`,
+   report: `
+<svg viewBox="0 0 24 24">
+<path d="M7 3h10v18H7z"/>
+<path d="M9 7h6"/>
+<path d="M9 11h6"/>
+<path d="M9 15h4"/>
+</svg>`
+ };
+ const slidesData = [
+   {
+     title: "1) Manage relationships (end-to-end)",
+     icon: "link",
+     body: "Manage client relationships throughout the project lifecycle from submitting the application to the signing."
+   },
+   {
+     title: "2) Collect and organize documentation",
+     icon: "folder",
+     body: "Collect, validate, and organize client information and required documentation."
+   },
+   {
+     title: "3) Coordinate project evaluation with stakeholders",
+     icon: "network",
+     body: "Coordinate project evaluation with internal stakeholders (PSD, MSD, Credit Risk, Legal, and other related teams).",
+     bullets: [
+       { icon: "building", text: "PSD: Project Studies Department" },
+       { icon: "chart", text: "MSD: Market Studies Department" }
+     ]
+   },
+   {
+     title: "4) Conduct credit evaluation",
+     icon: "calc",
+     body: "Review financial statements and assess the client’s credit position.",
+     bullets: [
+       { icon: "docs", text: "Review Income Statement, Balance Sheet, Cash Flow" },
+       { icon: "chart", text: "Assess liquidity, leverage, profitability, and cash generation" }
+     ]
+   },
+   {
+     title: "5) Conduct a financial model",
+     icon: "chart",
+     body: "Build a financial model to determine the loan amount and assess whether the project is viable."
+   },
+   {
+     title: "6) Prepare key deliverables",
+     icon: "docs",
+     body: "Prepare the following key deliverables:",
+     bullets: [
+       { icon: "report", text: "Ownership Report" },
+       { icon: "docs", text: "Project Evaluation Report (PER)" },
+       { icon: "chart", text: "Financial Model" },
+       { icon: "check", text: "Risk Assessment" }
+     ]
+   },
+   {
+     title: "Summary",
+     icon: "check",
+     body: "",
+     summary: [
+       "Manage client relationships throughout the project lifecycle from submitting the application to the signing",
+       "Collect, validate, and organize client information and required documentation",
+       "Coordinate project evaluation with internal stakeholders (PSD, MSD, Credit Risk, Legal, and other related teams)",
+       "Conduct credit evaluation of the client and the project",
+       "Prepare: Ownership Report, Project Evaluation Report (PER), Financial Model, and Risk Assessment"
+     ]
+   }
+ ];
+ const slidesEl = document.getElementById("slides");
+ const dotsEl = document.getElementById("dots");
+ const prevBtn = document.getElementById("prevBtn");
+ const nextBtn = document.getElementById("nextBtn");
+ const slideCounter = document.getElementById("slideCounter");
+ const seenText = document.getElementById("seenText");
+ const lockNote = document.getElementById("lockNote");
+ const continueBtn = document.getElementById("continueBtn");
+ const doneCheck = document.getElementById("doneCheck");
+ let index = 0;
+ function buildSlides(){
+   slidesEl.innerHTML = "";
+   dotsEl.innerHTML = "";
+   slidesData.forEach((s, i)=>{
+     const slide = document.createElement("div");
+     slide.className = "slide";
+     let inner = `
+<div class="slideCard">
+<div class="slideHead">
+<div class="iconBox">${ICONS[s.icon] || ""}</div>
+<div>
+<h3 class="slideTitle">${s.title}</h3>
+             ${s.body ? `<p class="muted slideBody">${s.body}</p>` : ``}
+</div>
+</div>
+     `;
+     if (s.bullets && s.bullets.length){
+       inner += `<ul class="miniList">`;
+       s.bullets.forEach(b=>{
+         inner += `
+<li class="miniItem">
+<div class="miniIcon">${ICONS[b.icon] || ""}</div>
+<div class="muted" style="line-height:1.5;">${b.text}</div>
+</li>
+         `;
+       });
+       inner += `</ul>`;
+     }
+     if (s.summary && s.summary.length){
+       inner += `<ul style="margin:10px 0 0; padding-left:18px; line-height:1.7;">`;
+       s.summary.forEach(x=>{
+         inner += `<li class="muted">${x}</li>`;
+       });
+       inner += `</ul>`;
+     }
+     inner += `</div>`;
+     slide.innerHTML = inner;
+     slidesEl.appendChild(slide);
+     const dot = document.createElement("div");
+     dot.className = "dot";
+     dot.addEventListener("click", ()=> goTo(i, true));
+     dotsEl.appendChild(dot);
+   });
+ }
+ function setSeen(i){
+   localStorage.setItem(SEEN_KEY(i), "true");
+ }
+ function countSeen(){
+   let c = 0;
+   for(let i=0;i<slidesData.length;i++){
+     if(localStorage.getItem(SEEN_KEY(i)) === "true") c++;
+   }
+   return c;
+ }
+ function updateUI(){
+   slidesEl.style.transform = `translateX(-${index*100}%)`;
+   const dots = [...dotsEl.children];
+   dots.forEach((d, i)=>{
+     d.classList.toggle("active", i === index);
+     d.classList.toggle("seen", localStorage.getItem(SEEN_KEY(i)) === "true");
+   });
+   slideCounter.textContent = `Slide ${index+1} / ${slidesData.length}`;
+   const seen = countSeen();
+   seenText.textContent = `${seen} / ${slidesData.length} completed`;
+   const allDone = (seen === slidesData.length) || localStorage.getItem(DONE_KEY) === "true";
+   if(allDone){
+     localStorage.setItem(DONE_KEY, "true");
+     if(typeof window.markStepComplete === "function"){
+       window.markStepComplete(`sidf_done_role:${user}`);
+     } else {
+       // fallback if stepper isn't loaded on this page
+       localStorage.setItem(`sidf_done_role:${user}`, "true");
+     }
+     doneCheck.style.display = "flex";
+     lockNote.textContent = "Completed ✓ You can continue.";
+     continueBtn.style.pointerEvents = "auto";
+     continueBtn.style.opacity = "1";
+     continueBtn.href = NEXT_PAGE;
+   } else {
+     doneCheck.style.display = "none";
+     lockNote.textContent = "🔒 Please view all slides to unlock Continue.";
+     continueBtn.style.pointerEvents = "none";
+     continueBtn.style.opacity = ".55";
+     continueBtn.href = "#";
+   }
+   prevBtn.disabled = (index === 0);
+   nextBtn.disabled = (index === slidesData.length - 1);
+ }
+ function goTo(i, mark=true){
+   index = Math.max(0, Math.min(slidesData.length-1, i));
+   if(mark) setSeen(index);
+   updateUI();
+ }
+ prevBtn.addEventListener("click", ()=> goTo(index-1, true));
+ nextBtn.addEventListener("click", ()=> goTo(index+1, true));
+ // swipe support (mobile)
+ let startX = 0, dx = 0, dragging = false;
+ const track = document.querySelector(".track");
+ track.addEventListener("touchstart", (e)=>{
+   dragging = true;
+   startX = e.touches[0].clientX;
+   dx = 0;
+ }, {passive:true});
+ track.addEventListener("touchmove", (e)=>{
+   if(!dragging) return;
+   dx = e.touches[0].clientX - startX;
+ }, {passive:true});
+ track.addEventListener("touchend", ()=>{
+   dragging = false;
+   if(Math.abs(dx) > 50){
+     if(dx < 0) goTo(index+1, true);
+     else goTo(index-1, true);
+   }
+ });
+ buildSlides();
+ // Mark first slide seen on load
+ setSeen(0);
+ updateUI();
+ // If already completed, unlock instantly
+ if(localStorage.getItem(DONE_KEY) === "true"){
+   for(let i=0;i<slidesData.length;i++) localStorage.setItem(SEEN_KEY(i), "true");
+   updateUI();
+ }
+ // ensure back button matches
+ document.querySelector('a.btn.ghost')?.setAttribute("href", BACK_PAGE);
+</script>
+</body>
+</html>

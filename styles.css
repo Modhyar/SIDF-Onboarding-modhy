@@ -2516,5 +2516,25 @@ li{ margin: 6px 0; }
  font-size: 12px;
  margin-top: 6px;
 }
- 
+.sidfIcon{
+ display:inline-flex;
+ width:18px;
+ height:18px;
+ margin-right:6px;
+ vertical-align:middle;
+}
+.sidfIcon svg{
+ width:18px;
+ height:18px;
+}
+.sidfIcon path,
+.sidfIcon line,
+.sidfIcon circle{
+ stroke: var(--sidf-green);
+ stroke-width:2;
+ fill:none;
+ stroke-linecap:round;
+ stroke-linejoin:round;
+} 
+
  

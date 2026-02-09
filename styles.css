@@ -2536,5 +2536,34 @@ li{ margin: 6px 0; }
  stroke-linecap:round;
  stroke-linejoin:round;
 } 
-
+/* SIDF Green Table Theme */
+.sidf-table {
+ width: 100%;
+ border-collapse: collapse;
+ overflow: hidden;
+ border-radius: 16px;
+}
+/* Header row */
+.sidf-table thead th {
+ background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+ color: white;
+ padding: 14px;
+ font-weight: 800;
+ text-align: left;
+}
+/* Body cells */
+.sidf-table td {
+ padding: 14px;
+ border-bottom: 1px solid rgba(11,107,79,.15);
+}
+/* Alternating rows */
+.sidf-table tbody tr:nth-child(even) {
+ background: rgba(230,244,239,.35);
+}
+/* First column (Aspect column) */
+.sidf-table tbody td:first-child {
+ font-weight: 700;
+ color: var(--sidf-green);
+}
  
+

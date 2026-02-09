@@ -93,6 +93,119 @@
      font-size: 12px;
      font-weight: 950;
    }
+   <style>
+
+/* your existing CSS here */
+
+
+/* SIDF Green Table Theme */
+
+.sidf-table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+}
+
+.sidf-table thead th {
+
+  background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+
+  color: white;
+
+  padding: 14px;
+
+  font-weight: 800;
+
+  text-align: left;
+
+}
+
+.sidf-table td {
+
+  padding: 14px;
+
+  border-bottom: 1px solid rgba(11,107,79,.15);
+
+}
+
+.sidf-table tbody tr:nth-child(even) {
+
+  background: rgba(230,244,239,.35);
+
+}
+
+.sidf-table tbody td:first-child {
+
+  font-weight: 700;
+
+  color: var(--sidf-green);
+
+}
+</style>
+ 
+<style>
+
+/* your existing CSS here */
+
+
+/* SIDF Green Table Theme */
+
+.sidf-table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+}
+
+.sidf-table thead th {
+
+  background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+
+  color: white;
+
+  padding: 14px;
+
+  font-weight: 800;
+
+  text-align: left;
+
+}
+
+.sidf-table td {
+
+  padding: 14px;
+
+  border-bottom: 1px solid rgba(11,107,79,.15);
+
+}
+
+.sidf-table tbody tr:nth-child(even) {
+
+  background: rgba(230,244,239,.35);
+
+}
+
+.sidf-table tbody td:first-child {
+
+  font-weight: 700;
+
+  color: var(--sidf-green);
+
+}
+</style>
+ 
+   
 </style>
 </head>
 <body>
@@ -116,7 +229,7 @@
        approaches are outlined below.
 </p>
 <div class="table-shell">
-<table aria-label="Standalone vs Consolidated comparison table">
+<table class="sidf-table" aria-label="Standalone vs Consolidated comparison table">
 <thead>
 <tr>
 <th style="width:22%;">Aspect</th>
@@ -173,7 +286,7 @@
 <div class="divider"></div>
 <div class="actions spread">
 <a class="btn ghost" href="modeling.html">Back</a>
-<a class="btn primary" href="final.html">Continue</a>
+<a class="btn primary" href="modeling.html">Done</a>
 </div>
 </section>
 <footer class="footer">
@@ -182,4 +295,5 @@
 </footer>
 </main>
 </body>
+
 </html>
